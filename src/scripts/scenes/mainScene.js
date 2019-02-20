@@ -72,6 +72,8 @@ export default class MainScene extends Phaser.Scene {
     }
 
     create() {
+        this.cameras.main.setBackgroundColor('#000');
+
         // configure background
         this.add.image(0, 0, 'bg').setOrigin(0, 0);
 
