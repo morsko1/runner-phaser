@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <meta name="theme-color" content="#000000" />
+
+    <link rel="manifest" href="./manifest.json" />
+
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="My Phaser Game" />
+    <meta name="apple-mobile-web-app-title" content="My Phaser Game" />
+    <meta name="msapplication-starturl" content="./" />
+
+    <link rel="icon" type="image/png" sizes="192x192" href="./icons/icons-192.png" />
+    <link rel="apple-touch-icon" type="image/png" sizes="192x192" href="./icons/icons-192.png" />
+
+    <link rel="icon" type="image/png" sizes="512x512" href="./icons/icons-512.png" />
+    <link rel="apple-touch-icon" type="image/png" sizes="512x512" href="./icons/icons-512.png" />
+
+    <link rel="shortcut icon" href="./favicon.png" type="image/x-icon" />
+
+    <title>My Phaser Game</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            background-color: #000000;
+        }
+    </style>
+
+    <noscript>Please enable javascript to continue using this application.</noscript>
+
+    <!-- installs the serviceWorker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js');
+            })
+        }
+    </script>
+    </head>
+    <body><script type="text/javascript" src="vendors.7aaa0173f82f7280dbc7.js"></script><script type="text/javascript" src="game.57f891319cb5ced2f6c1.js"></script></body>
+</html>
