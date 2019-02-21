@@ -88,12 +88,36 @@ export default class MainScene extends Phaser.Scene {
         this.player.displayHeight = this.playerWidth;
 
         // // configure level
+        const currentLevel = +localStorage.getItem('currentLevel');
+        if (currentLevel) {
+            this.currentLevel = currentLevel;
+        }
         this.configureLevel(this.currentLevel);
 
 
-        this.levelInfoText = this.add.text(16, 80, `уровень 1 из ${levels.length}`, {fontSize: '48px', fontStyle: 'bold', fill: '#eee' });
+        this.levelInfoText = this.add.text(16, 80, `уровень ${this.currentLevel + 1} из ${levels.length}`, {fontSize: '48px', fontStyle: 'bold', fill: '#eee' });
         this.numOfAttemptsText = this.add.text(16, 150, `попыток: ${this.numOfAttempts}`, {fontSize: '48px', fontStyle: 'bold', fill: '#eee' });
+        this.pauseText = this.add.text(1000, 150, `пауза`, {fontSize: '48px', fontStyle: 'bold', fill: '#eee' });
+        this.pauseText.setInteractive();
+        this.pauseText.on('pointerdown', () => {
+            this.scene.launch('MenuScene');
+            this.scene.pause();
+        });
 
+        // listen resume event and set choosen level
+        this.events.on('resume', (data, passedData) => {
+            if(passedData && typeof passedData.level === 'number') {
+                this.currentLevel = passedData.level;
+                this.levelInfoText.setText(`уровень ${this.currentLevel + 1} из ${levels.length}`);
+                localStorage.setItem('currentLevel', this.currentLevel);
+                this.numOfAttempts = 0;
+                this.numOfAttemptsText.setText(`попыток: ${this.numOfAttempts}`);
+
+                this.player.x = 0;
+                this.player.y = this.playerInitialY;
+                this.configureLevel(this.currentLevel);
+            }
+        });
 
         // show fps value
         if (IS_DEV) {
@@ -137,7 +161,10 @@ export default class MainScene extends Phaser.Scene {
         // configure next level or complete the game
         if (isLevelCompleted && this.currentLevel < (this.numOfLevels - 1)) {
             this.configureLevel(++this.currentLevel);
+            localStorage.setItem('currentLevel', this.currentLevel);
             this.levelInfoText.setText(`уровень ${this.currentLevel + 1} из ${levels.length}`);
+            this.numOfAttempts = 0;
+            this.numOfAttemptsText.setText(`попыток: ${this.numOfAttempts}`);
         } else if (isLevelCompleted && this.currentLevel === this.numOfLevels - 1) {
             this.input.off('pointerdown');
             this.restartGameText = this.add.text(1280 / 2, 720 / 2, `начать заново`, {fontSize: '80px', fontStyle: 'bold', fill: '#eee' });

@@ -2,6 +2,7 @@ import 'phaser';
 import '@babel/polyfill';
 
 import MainScene from './scenes/mainScene';
+import MenuScene from './scenes/menuScene';
 import PreloadScene from './scenes/preloadScene';
 
 const DEFAULT_WIDTH = 1280;
@@ -15,7 +16,7 @@ const config = {
         width: DEFAULT_WIDTH,
         height: DEFAULT_HEIGHT
     },
-    scene: [PreloadScene, MainScene],
+    scene: [PreloadScene, MainScene, MenuScene],
     physics: {
         default: 'arcade',
         arcade: {
