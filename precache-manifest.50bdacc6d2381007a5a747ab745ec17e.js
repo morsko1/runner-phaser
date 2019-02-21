@@ -8,7 +8,7 @@ self.__precacheManifest = [
     "url": "sw.js"
   },
   {
-    "revision": "c92ff0dddf74a48fa88f47e3ec418a8f",
+    "revision": "00fdb9cd9370803128e549dc85fabdc7",
     "url": "index.html"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = [
     "url": "icons/icons-192.png"
   },
   {
-    "revision": "cd5de36a5d52556b4fe1",
-    "url": "game.57f891319cb5ced2f6c1.js"
+    "revision": "c9b00b6c6cedb7e8bcd0",
+    "url": "game.85fb8b70a4ea4b1e590b.js"
   },
   {
     "revision": "8ea3cd4b088618c4cb6ed4b531b762ab",
